@@ -2,9 +2,8 @@
 const express = require("express");
 const blogPostController = require("./controllers/blogPostController");
 const mongoose = require("mongoose");
+const cors = require("cors");
 require("dotenv").config();
-
-
 
 const app = express();
 
@@ -29,6 +28,7 @@ mongoose.connection.on("error", (error) => {
 // MiddleWare
 
 app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 
