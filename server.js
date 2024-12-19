@@ -11,6 +11,8 @@ const MONGO_URI = process.env.MONGO_URI;
 
 const PORT = process.env.PORT || 3001;
 
+mongoose.set("strictQuery", true);
+
 // Connecting to mongodb
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
@@ -26,14 +28,12 @@ mongoose.connection.on("error", (error) => {
 });
 
 // MiddleWare
-
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 
 // Getting Routes from controllers file
-
 app.use("/blogPost", blogPostController);
 
 app.listen(PORT, () => {
