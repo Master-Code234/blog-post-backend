@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import { connectToDb } from "./config/database.js";
-import blogPostController from "./controllers/blogPostController.js";
+import blogPostRoutes from "./routes/blogPosts.js";
 import helmet from "helmet";
 import cors from "cors";
 
@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json());
 app.use(helmet());
 app.use(cors());
-app.use("/blogPost", blogPostController);
+app.use("/blogPost", blogPostRoutes);
 
 const startServer = async () => {
   try {
