@@ -1,6 +1,7 @@
-const express = require("express");
+import express from "express";
+import BlogPost from "../models/blogPost.js";
+
 const router = express.Router();
-const BlogPost = require("../models/blogPost");
 
 // Get all blog posts
 router.get("/", async (req, res) => {
@@ -70,4 +71,4 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

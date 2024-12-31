@@ -1,9 +1,15 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
-const blogPostSchema = new mongoose.Schema({
-  content: { type: String, required: true },
-});
+const blogPostSchema = new mongoose.Schema(
+  {
+    content: {
+      type: String,
+      required: true,
+    },
+  },
+  { timestamps: true }
+);
 
-const Post = mongoose.model("Post", blogPostSchema);
+const BlogPost = mongoose.model("BlogPost", blogPostSchema);
 
-module.exports = Post;
+export default BlogPost;
