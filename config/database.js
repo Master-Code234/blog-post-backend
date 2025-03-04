@@ -1,12 +1,19 @@
 import mongoose from "mongoose";
 
-// Connecting to MongoDB
 export const connectToDb = async () => {
+  if (!process.env.MONGO_URI) {
+    console.error("Environment variable is not defined.");
+    process.exit(1);
+  }
+
   try {
-    await mongoose.connect(process.env.MONGO_URI);
+    await mongoose.connect(process.env.MONGO_URI, {
+      useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 5000,
+    });
     console.log("Connected to MongoDB");
   } catch (error) {
-    console.error(`Error: ${error.message}`);
+    console.error("Database Connection Error: An issue occurred.");
     process.exit(1);
   }
 };
